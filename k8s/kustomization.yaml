@@ -6,7 +6,6 @@ resources:
 - node-app-claim2-persistentvolumeclaim.yaml
 - notused-persistentvolumeclaim.yaml
 - node-app-service.yaml
-- mysql-db-deployment.yaml
 - node-app-claim0-persistentvolumeclaim.yaml
 - boilerplate-network-networkpolicy.yaml
 - node-app-deployment.yaml
