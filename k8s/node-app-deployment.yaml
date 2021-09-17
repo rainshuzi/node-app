@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /usr/local/bin/kompose convert -o k8s
+    kompose.version: 1.24.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: node-app
+  name: node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: node-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /usr/local/bin/kompose convert -o k8s
+        kompose.version: 1.24.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/boilerplate-network: "true"
+        io.kompose.service: node-app
+    spec:
+      containers:
+        - image: node-app
+          name: node-app
+          ports:
+            - containerPort: 5000
+          resources: {}
+          volumeMounts:
+            - mountPath: /opt/app
+              name: node-app-claim0
+            - mountPath: /opt/package.json
+              name: node-app-claim1
+            - mountPath: /opt/package-lock.json
+              name: node-app-claim2
+            - mountPath: /opt/app/node_modules
+              name: notused
+      restartPolicy: Always
+      volumes:
+        - name: node-app-claim0
+          persistentVolumeClaim:
+            claimName: node-app-claim0
+        - name: node-app-claim1
+          persistentVolumeClaim:
+            claimName: node-app-claim1
+        - name: node-app-claim2
+          persistentVolumeClaim:
+            claimName: node-app-claim2
+        - name: notused
+          persistentVolumeClaim:
+            claimName: notused
+status: {}
