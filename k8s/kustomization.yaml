@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
 - mysql-db-service.yaml
 - db-data-persistentvolumeclaim.yaml
-- kustomization.yaml
 - node-app-claim2-persistentvolumeclaim.yaml
 - notused-persistentvolumeclaim.yaml
 - node-app-service.yaml
