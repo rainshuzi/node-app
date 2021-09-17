@@ -31,15 +31,6 @@ spec:
           ports:
             - containerPort: 5000
           resources: {}
-          volumeMounts:
-            - mountPath: /opt/app
-              name: node-app-claim0
-            - mountPath: /opt/package.json
-              name: node-app-claim1
-            - mountPath: /opt/package-lock.json
-              name: node-app-claim2
-            - mountPath: /opt/app/node_modules
-              name: notused
       restartPolicy: Always
       volumes:
         - name: node-app-claim0
